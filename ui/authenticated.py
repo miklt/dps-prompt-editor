@@ -12,6 +12,7 @@ def visualizar_formulario():
     prompt_recibo_compensacao = st.session_state.get("prompts")[
         "prompt_recibo_compensacao"
     ]
+    prompt_nfe = st.session_state.get("prompts")["prompt_nfe"]
     id = st.session_state.get("prompts")["id"]
 
     with st.form("Prompts"):
@@ -38,18 +39,20 @@ def visualizar_formulario():
             height=200,
             key="prompt_rc",
         )
+        st.write("Prompt Nfe")
+        prompt_nfe = st.text_area(
+            "Edite o prompt aqui:",
+            value=prompt_nfe,
+            height=200,
+            key="prompt_nfe",
+        )
 
         submitted = st.form_submit_button("Salvar")
         if submitted:
             update_prompt_by_tipo("acessorio", prompt_ra, id)
             update_prompt_by_tipo("principal", prompt_rp, id)
             update_prompt_by_tipo("compensacao", prompt_rc, id)
+            update_prompt_by_tipo("nfe", prompt_nfe, id)
             st.success("Prompt atualizado com sucesso!")
             st.session_state["prompts_updated"] = True
             st.session_state["prompts_received"] = False
-        # if st.button("Salvar"):
-        #     st.session_state["prompt"] = (prompt, id)
-        #     update_prompt_by_tipo("acessorio",prompt, id)
-        #     st.success("Prompt atualizado com sucesso!")
-        #     st.session_state["prompt_updated"] = True
-        #     st.session_state["prompt_received"] = False

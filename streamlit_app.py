@@ -18,8 +18,7 @@ if "authenticated" not in st.session_state:
 
 
 if not st.session_state["prompts_received"]:
-    prompts = get_prompts()
-    print(prompts)
+    prompts = get_prompts()    
     if prompts is not None:
         st.session_state["prompts"] = prompts
         st.session_state["prompts_received"] = True
